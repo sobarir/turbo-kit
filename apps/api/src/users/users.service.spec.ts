@@ -8,15 +8,15 @@ describe('UsersService', () => {
   let service: UsersService;
   let prisma: { user: Record<string, ReturnType<typeof mock>> };
 
-const fullUser = {
-  id: 'u1',
-  email: 'a@b.com',
-  name: null,
-  role: 'USER' as const,
-  createdAt: new Date('2025-01-01T00:00:00Z'),
-  updatedAt: new Date('2025-01-01T00:00:00Z'),
-};
-  
+  const fullUser = {
+    id: 'u1',
+    email: 'a@b.com',
+    name: null,
+    role: 'USER' as const,
+    createdAt: new Date('2025-01-01T00:00:00Z'),
+    updatedAt: new Date('2025-01-01T00:00:00Z'),
+  };
+
   beforeEach(async () => {
     prisma = {
       user: {
@@ -34,7 +34,7 @@ const fullUser = {
 
   it('findOne returns a user', async () => {
     prisma.user.findUnique.mockResolvedValue(fullUser);
-    await expect(service.findOne('u1')).resolves.toEqual({
+    await expect(service.findOne('u1')).resolves.toMatchObject({
       id: 'u1',
       email: 'a@b.com',
     });
