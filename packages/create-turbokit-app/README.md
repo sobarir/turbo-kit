@@ -51,11 +51,11 @@ See the generated project's `README.md`, `SETUP.md`, and `ENVIRONMENT.md`.
 ## Maintainers — how the template works
 
 The CLI ships a clean snapshot of the kit in `template/`, generated at publish
-time by `prepare-template.sh` (excludes `node_modules`, `.git`, build output,
+time by `prepare-template.mjs` (excludes `node_modules`, `.git`, build output,
 real `.env` files, and the CLI package itself). `template/` is gitignored and
 rebuilt on `prepublishOnly`, so it never drifts from the kit and is never
 committed.
 
 To publish: from the repo root the template is the kit itself; `bun run build`
-in this package runs `prepare-template.sh` then compiles the CLI, then
+in this package runs `prepare-template.mjs` then compiles the CLI, then
 `npm publish`.

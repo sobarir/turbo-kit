@@ -1,4 +1,12 @@
-import { describe, it, expect, beforeEach, afterEach, mock, spyOn } from 'bun:test';
+import {
+  describe,
+  it,
+  expect,
+  beforeEach,
+  afterEach,
+  mock,
+  spyOn,
+} from 'bun:test';
 import { ServiceUnavailableException, Logger } from '@nestjs/common';
 import { AiService } from './ai.service';
 
@@ -26,7 +34,9 @@ const makeConfig = (overrides: Partial<ConfigMap> = {}) => {
 
 describe('AiService', () => {
   const realFetch = globalThis.fetch;
-  const loggerErrorSpy = spyOn(Logger.prototype, 'error').mockImplementation(() => {});
+  const loggerErrorSpy = spyOn(Logger.prototype, 'error').mockImplementation(
+    () => {},
+  );
 
   beforeEach(() => {
     loggerErrorSpy.mockClear();
@@ -50,9 +60,7 @@ describe('AiService', () => {
   });
 
   it('throws ServiceUnavailable when AI_API_KEY is not configured', async () => {
-    const service = new AiService(
-      makeConfig({ AI_API_KEY: '' }),
-    );
+    const service = new AiService(makeConfig({ AI_API_KEY: '' }));
     await expect(
       service.chat([{ role: 'user', content: 'hi' }]),
     ).rejects.toBeInstanceOf(ServiceUnavailableException);

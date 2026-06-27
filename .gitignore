@@ -4,6 +4,9 @@ dist/
 .turbo/
 coverage/
 .env
+.env.local
+.env.*
+*.tsbuildinfo
 *.log
 .DS_Store
 # Prisma 7 generated client (run `bunx prisma generate`)
