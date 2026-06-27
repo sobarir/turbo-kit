@@ -1,0 +1,2 @@
+# Full gate before code leaves the machine. Skip with --no-verify only in emergencies.
+bash scripts/verify.sh

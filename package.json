@@ -1,0 +1,46 @@
+{
+  "name": "turbo-kit",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint:check",
+    "typecheck": "turbo run typecheck",
+    "check": "turbo run check",
+    "test": "turbo run test",
+    "format": "prettier --write \"apps/**/src/**/*.{ts,tsx}\" \"packages/**/src/**/*.ts\"",
+    "format:check": "prettier --check \"apps/**/src/**/*.{ts,tsx}\" \"packages/**/src/**/*.ts\"",
+    "deps:check": "bunx npm-check-updates --deep",
+    "deps:upgrade": "bunx npm-check-updates --deep -u && bun install",
+    "prepare": "husky",
+    "verify": "bash scripts/verify.sh",
+    "dupes": "jscpd"
+  },
+  "devDependencies": {
+    "turbo": "^2.5.5",
+    "prettier": "^3.6.2",
+    "typescript": "^6.0.3",
+    "@repo/config": "*",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.0.8",
+    "@commitlint/cli": "^21.1.0",
+    "@commitlint/config-conventional": "^21.1.0",
+    "eslint": "^9.39.0",
+    "jscpd": "^5.0.11"
+  },
+  "packageManager": "bun@1.3.14",
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "prettier --write",
+      "bunx eslint --fix --no-warn-ignored"
+    ],
+    "*.{json,md,css}": [
+      "prettier --write"
+    ]
+  }
+}

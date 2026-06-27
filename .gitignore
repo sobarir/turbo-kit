@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.next/
+.turbo/
+coverage/
+.env
+*.log
+.DS_Store
+# Prisma 7 generated client (run `bunx prisma generate`)
+apps/api/src/generated/
+.husky/_/
+test-results/
+playwright-report/
+playwright/.cache/

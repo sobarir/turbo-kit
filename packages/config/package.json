@@ -1,0 +1,19 @@
+{
+  "name": "@repo/config",
+  "version": "1.0.0",
+  "private": true,
+  "exports": {
+    "./eslint/base": "./eslint/base.mjs",
+    "./eslint/next": "./eslint/next.mjs",
+    "./prettier": "./prettier/index.json"
+  },
+  "files": [
+    "eslint",
+    "prettier"
+  ],
+  "dependencies": {
+    "@eslint/js": "^9.39.0",
+    "eslint-config-prettier": "^10.1.8",
+    "typescript-eslint": "^8.62.0"
+  }
+}

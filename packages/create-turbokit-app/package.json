@@ -1,0 +1,32 @@
+{
+  "name": "create-turbokit-app",
+  "version": "0.1.0",
+  "description": "Scaffold a new full-stack app from turbo-kit (NestJS + Next.js + Turborepo).",
+  "type": "module",
+  "bin": {
+    "create-turbokit-app": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "template"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsc -p tsconfig.json --watch",
+    "prepare-template": "bash prepare-template.sh",
+    "prepublishOnly": "bash prepare-template.sh && bun run build"
+  },
+  "dependencies": {
+    "picocolors": "^1.1.1",
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/prompts": "^2.4.9",
+    "typescript": "^6.0.3"
+  },
+  "license": "MIT"
+}

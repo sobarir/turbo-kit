@@ -1,0 +1,3 @@
+{
+  "instructions": "This is the API app of a monorepo. Read apps/api/CLAUDE.md and API-CONVENTIONS.md. Skills for the full development workflow live at the repo root in .claude/skills/ (plan-feature, split-work, create-spec, implement-feature, verify, review, security-scan, ship). See WORKFLOW.md."
+}

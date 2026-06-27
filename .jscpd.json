@@ -1,0 +1,17 @@
+{
+  "threshold": 3,
+  "reporters": ["console"],
+  "absolute": true,
+  "gitignore": true,
+  "format": ["typescript", "tsx", "javascript", "jsx"],
+  "path": ["apps/api/src", "apps/web/src", "packages/shared/src"],
+  "ignore": [
+    "**/*.spec.ts",
+    "**/*.test.ts",
+    "**/*.e2e-spec.ts",
+    "**/generated/**",
+    "**/node_modules/**",
+    "**/.next/**",
+    "**/dist/**"
+  ]
+}

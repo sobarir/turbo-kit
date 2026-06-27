@@ -1,0 +1,6 @@
+[test]
+coverage = true
+coverageSkipTestFiles = true
+# Per-metric floor. Lines is the meaningful metric for a starter kit; function
+# coverage is noisy with DI classes. Tune upward as the suite matures.
+coverageThreshold = { line = 0.4, function = 0.3 }
