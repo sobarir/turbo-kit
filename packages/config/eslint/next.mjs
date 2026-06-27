@@ -3,9 +3,9 @@ import { baseConfig } from './base.mjs';
 // ESLint flat config for Next.js apps. Composes the shared TypeScript base and
 // layers Next's recommended rules plus kit-specific pattern enforcement.
 // Pass the Next plugin (resolved from the app) and the app's tsconfig path.
-export function nextConfig(nextPlugin, project = './tsconfig.json') {
+export function nextConfig(nextPlugin, project = './tsconfig.json', tsconfigRootDir) {
   return [
-    ...baseConfig(project),
+    ...baseConfig(project, tsconfigRootDir),
     {
       plugins: { '@next/next': nextPlugin },
       rules: {

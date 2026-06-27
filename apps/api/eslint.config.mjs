@@ -1,7 +1,11 @@
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 import { baseConfig } from '@repo/config/eslint/base';
 
+const __dirname = import.meta.dirname || dirname(fileURLToPath(import.meta.url));
+
 export default [
-  ...baseConfig('./tsconfig.json'),
+  ...baseConfig('./tsconfig.json', __dirname),
   {
     // --- Kit pattern enforcement (API) ---
     rules: {
