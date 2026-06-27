@@ -11,8 +11,8 @@ import {
 import {
   CurrentUser,
   AuthUser,
-} from 'src/auth/decorators/current-user.decorator';
-import { Roles } from 'src/auth/decorators/roles.decorator';
+} from '../auth/decorators/current-user.decorator';
+import { Roles } from '../auth/decorators/roles.decorator';
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 

@@ -4,7 +4,7 @@ import {
   Logger,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import type { Env } from 'src/config/env.validation';
+import type { Env } from '../config/env.validation';
 import { ChatMessageDto } from './dto/chat.dto';
 
 // Provider-agnostic AI client. Talks to any OpenAI-compatible gateway

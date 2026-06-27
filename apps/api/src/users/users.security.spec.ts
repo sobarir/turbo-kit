@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, mock } from 'bun:test';
 import { Test } from '@nestjs/testing';
 import { UsersService } from './users.service';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from '../prisma/prisma.service';
 
 // Security invariant (mechanical guard):
 // The API must NEVER return passwordHash (or any secret field) to clients.
