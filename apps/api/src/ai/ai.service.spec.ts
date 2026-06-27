@@ -1,5 +1,5 @@
-import { describe, it, expect, beforeEach, afterEach, mock } from 'bun:test';
-import { ServiceUnavailableException } from '@nestjs/common';
+import { describe, it, expect, beforeEach, afterEach, mock, spyOn } from 'bun:test';
+import { ServiceUnavailableException, Logger } from '@nestjs/common';
 import { AiService } from './ai.service';
 
 // Behavior tests for AiService (see the write-tests skill): mock the boundaries
@@ -24,17 +24,12 @@ const makeConfig = (overrides: Partial<ConfigMap> = {}) => {
   } as never;
 };
 
-const noopLogger = {
-  error: mock(),
-  warn: mock(),
-  info: mock(),
-};
-
 describe('AiService', () => {
   const realFetch = globalThis.fetch;
+  const loggerErrorSpy = spyOn(Logger.prototype, 'error').mockImplementation(() => {});
 
   beforeEach(() => {
-    noopLogger.error.mockClear();
+    loggerErrorSpy.mockClear();
   });
 
   afterEach(() => {
@@ -49,7 +44,7 @@ describe('AiService', () => {
       }),
     })) as never;
 
-    const service = new AiService(makeConfig(), noopLogger as never);
+    const service = new AiService(makeConfig());
     const result = await service.chat([{ role: 'user', content: 'hi' }]);
     expect(result).toBe('hello there');
   });
@@ -57,7 +52,6 @@ describe('AiService', () => {
   it('throws ServiceUnavailable when AI_API_KEY is not configured', async () => {
     const service = new AiService(
       makeConfig({ AI_API_KEY: '' }),
-      noopLogger as never,
     );
     await expect(
       service.chat([{ role: 'user', content: 'hi' }]),
@@ -71,7 +65,7 @@ describe('AiService', () => {
       text: async () => 'upstream boom',
     })) as never;
 
-    const service = new AiService(makeConfig(), noopLogger as never);
+    const service = new AiService(makeConfig());
     await expect(
       service.chat([{ role: 'user', content: 'hi' }]),
     ).rejects.toBeInstanceOf(ServiceUnavailableException);
@@ -82,7 +76,7 @@ describe('AiService', () => {
       throw new Error('network down');
     }) as never;
 
-    const service = new AiService(makeConfig(), noopLogger as never);
+    const service = new AiService(makeConfig());
     // The raw network error must not leak — it's wrapped in a safe 503.
     await expect(
       service.chat([{ role: 'user', content: 'hi' }]),
@@ -95,7 +89,7 @@ describe('AiService', () => {
       json: async () => ({ choices: [] }),
     })) as never;
 
-    const service = new AiService(makeConfig(), noopLogger as never);
+    const service = new AiService(makeConfig());
     expect(await service.chat([{ role: 'user', content: 'hi' }])).toBe('');
   });
 });
