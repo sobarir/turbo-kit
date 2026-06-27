@@ -1,4 +1,4 @@
-import { Injectable, ServiceUnavailableException } from '@nestjs/common';
+import { Injectable, ServiceUnavailableException, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PinoLogger, InjectPinoLogger } from 'nestjs-pino';
 import type { Env } from 'src/config/env.validation';
@@ -9,10 +9,11 @@ import { ChatMessageDto } from './dto/chat.dto';
 // no code change. To swap providers, change AI_BASE_URL.
 @Injectable()
 export class AiService {
+  private readonly logger = new Logger(AiService.name);
+  
   // Pattern for services that log: inject PinoLogger with the class context.
   constructor(
     private readonly config: ConfigService<Env, true>,
-    @InjectPinoLogger(AiService.name) private readonly logger: PinoLogger,
   ) {}
 
   async chat(messages: ChatMessageDto[]): Promise<string> {
